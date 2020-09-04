@@ -9,11 +9,18 @@ module.exports = {
     const db = req.app.get('db')
     const product = { ...req.body }
     db.create_product(product)
-      .then(() => res.status(200))
+      .then(newProduct => res.status(200).send(newProduct))
       .catch(err => {
         console.log(err)
         res.status(500).send(err)
       })
 
+  },
+  deleteProduct: (req, res) => {
+    const db = req.app.get('db')
+    const { id } = req.params
+    db.delete_product(+id)
+      .then(() => res.sendStatus(200))
+      .catch(err => res.status(500).send(err))
   }
 }

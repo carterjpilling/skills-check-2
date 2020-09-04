@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       products: []
     }
+    this.getInventory = this.getInventory.bind(this)
   }
   componentDidMount() {
     this.getInventory()
@@ -24,8 +25,8 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-        <Dashboard products={this.state.products} />
-        <Form />
+        <Dashboard products={this.state.products} getInventory={this.getInventory} />
+        <Form getInventory={this.getInventory} />
         <Header />
       </div>
     );

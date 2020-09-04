@@ -9,7 +9,8 @@ const { SERVER_PORT, CONNECTION_STRING } = process.env
 app.use(express.json())
 
 app.get('/api/inventory', inventoryCtrl.getAllProducts)
-app.post('/api/inventory', inventoryCtrl.addProducts)
+app.post('/api/product', inventoryCtrl.addProducts)
+app.delete('/api/product/:id', inventoryCtrl.deleteProduct)
 
 massive({
   connectionString: CONNECTION_STRING,

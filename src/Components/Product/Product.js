@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Product(props) {
-  const { name, price, product_img } = props.data
+  const { id, name, price, product_img } = props.data
   return (
     <div className="product-display">
       <div>{product_img}</div>
@@ -11,6 +11,7 @@ export default function Product(props) {
       <p>
         {price}
       </p>
+      <button onClick={_ => props.deleteProduct(id)}>Delete</button>
     </div>
   )
 }
