@@ -1,0 +1,22 @@
+.header{
+  width: 100vw;
+  height: 8vh;
+  background-color: cadetblue;
+  position:fixed;
+  top:0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px;
+}
+.header>img{
+  margin: 20px;
+  height: 75%;
+}
+
+.header>h1{
+font-weight: 650;
+font-size:28px;
+color:white;
+text-transform: uppercase;
+}

@@ -1,0 +1,12 @@
+.product-display{
+  position: relative;
+  display:flex;
+  justify-content: center;
+  justify-items: column;
+}
+
+.product-container{
+  border:1px solid blue;
+  background-color: #d34735;
+
+}
