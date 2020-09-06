@@ -8,5 +8,7 @@
 .product-container{
   border:1px solid blue;
   background-color: #d34735;
+  width: 300px;
+  margin: 10px;
 
 }

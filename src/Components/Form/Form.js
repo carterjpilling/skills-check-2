@@ -22,7 +22,11 @@ class Form extends Component {
     let { id, name, price, product_img } = this.props.product
     if (prevProps.product.id !== this.props.product.id) {
       this.setState({
-        id, name, price, product_img, edit: true
+        id,
+        name,
+        price,
+        product_img,
+        edit: true
       })
     }
   }
