@@ -12,6 +12,7 @@ app.get('/api/inventory', inventoryCtrl.getAllProducts)
 app.post('/api/product', inventoryCtrl.addProducts)
 app.delete('/api/product/:id', inventoryCtrl.deleteProduct)
 app.put('/api/product/:id', inventoryCtrl.editProduct)
+app.get('/api/product/:id', inventoryCtrl.getProduct)
 
 massive({
   connectionString: CONNECTION_STRING,

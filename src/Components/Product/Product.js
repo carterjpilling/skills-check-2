@@ -1,7 +1,9 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
+
 import '../styling/Product.css'
 
-export default function Product(props) {
+function Product(props) {
   const { id, name, price, product_img } = props.data
   return (
     <div className="product-display">
@@ -14,8 +16,10 @@ export default function Product(props) {
           {price}
         </p>
         <button onClick={() => props.deleteProduct(id)}>Delete</button>
-        <button onClick={() => props.editProduct(props.data)}>Edit</button>
+        <button onClick={() => props.history.push(`/edit/${props.data.id}`)}>Edit</button>
       </div>
     </div>
   )
 }
+
+export default withRouter(Product)

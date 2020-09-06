@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 import '../styling/Form.css'
 
 class Form extends Component {
@@ -7,26 +8,36 @@ class Form extends Component {
     super()
 
     this.state = {
-      id: null,
       name: "",
       price: 0,
-      product_img: ""
+      product_img: "",
+      edit: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+  componentDidMount() {
+    // console.log('Mount Hit')
+    let { id } = this.props.match.params;
+    if (id) {
+      // console.log('If Hit')
+      axios.get(`/api/product/${id}`)
+        .then(res => {
+          // console.log('Get Hit')
+          this.setState({ ...res.data, edit: true })
+        })
+    }
+  }
 
 
   componentDidUpdate(prevProps) {
-    let { id, name, price, product_img } = this.props.product
-    if (prevProps.product.id !== this.props.product.id) {
+    // console.log('Didupdate hit')
+    if (this.props.match.path !== prevProps.match.path) {
       this.setState({
-        id,
-        name,
-        price,
-        product_img,
-        edit: true
+        name: '',
+        price: 0,
+        product_img: ''
       })
     }
   }
@@ -53,21 +64,21 @@ class Form extends Component {
       // console.log('check2')
       .then(() => {
         // console.log('hit .then')
-        this.props.getInventory();
-        this.handleCancel();
+        this.props.history.push('/')
       })
       .catch(err => console.log(err))
   }
   handleCancel(e) {
-    console.log('hit cancel')
-    if (this.state.id) {
-      this.props.editProduct({})
+    // console.log('hit cancel')
+    if (this.props.match.params.id) {
+      this.props.history.push('/')
+    } else {
+      this.setState({
+        name: "",
+        price: 0,
+        product_img: ""
+      })
     }
-    this.setState({
-      name: "",
-      price: 0,
-      product_img: ""
-    })
   }
 
   handleEditProduct() {
@@ -79,14 +90,16 @@ class Form extends Component {
     }
     axios.put(`/api/product/${id}`, product)
       .then(res => {
-        console.log('got inventory')
-        this.props.getInventory()
-        this.handleCancel()
+        // console.log('got inventory')
+        this.props.history.push('/')
+        // this.props.getInventory()
+        // this.handleCancel()
       })
       .catch(err => console.log(err))
   }
 
   render() {
+    // console.log(this.state.edit)
     return (
       <div className="form-container">
 
@@ -95,9 +108,9 @@ class Form extends Component {
         <input type="text" placeholder="Image URL" onChange={this.handleChange} name="product_img" value={this.state.product_img}></input>
         <div>
           <button onClick={_ => this.handleCancel()}>Cancel</button>
-          {this.state.id
-            ? <button onClick={_ => this.handleEditProduct()}>Save Changes</button>
-            : <button onClick={_ => this.handleSubmit()}>Add to Inventory</button>
+          {this.state.edit
+            ? <button onClick={() => this.handleEditProduct()}>Save Changes</button>
+            : <button onClick={() => this.handleSubmit()}>Add to Inventory</button>
           }
         </div>
 
@@ -105,4 +118,4 @@ class Form extends Component {
     )
   }
 }
-export default Form
+export default withRouter(Form)
