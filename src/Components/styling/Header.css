@@ -8,6 +8,7 @@
   justify-content: left;
   align-items: center;
   padding: 10px;
+  z-index: 2;
 }
 .header>img{
   margin: 20px;
