@@ -1,8 +1,61 @@
+ .form-display{
+  position: relative;
+  display:flex;
+  justify-content: center;
+  justify-items: column;
+}
+
 .form-container{
   background-color: #3ad886;
-  padding: 25px;
+  padding: 10px;
   position: fixed;
-  right: 20%;
   top: 20vh;
   border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  margin: 5px;
+}
+.input-container>input{
+  margin: 5px;
+}
+.form-button-container{
+  display: flex;
+  width: 350px;
+  justify-content: space-around;
+  margin: 10px;
+  align-items: baseline;
+}
+
+
+.form-button-container > button{
+  background: #ed6b5a;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-button-container >button:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.form-container > img{
+  width: 250px;
+  margin: 10px;
+  display: flex;
+  align-self: center;
+  border: 1px solid red;
+} 
+
+.default-logo{
+  background-image: url(https://s3.amazonaws.com/bloc-global-assets/almanac-assets/bootcamps/logos/000/002/656/original/DevMountain.jpg?1467187319);
 }

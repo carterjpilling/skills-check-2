@@ -8,17 +8,21 @@ function Product(props) {
   return (
     <div className="product-display">
       <div className="product-container">
-        <div className="product-img" style={{ backgroundImage: `url(${product_img})` }}></div>
-        <p>
-          {name}
-        </p>
-        <p>
-          {price}
-        </p>
-        <button onClick={() => props.deleteProduct(id)}>Delete</button>
-        <button onClick={() => props.history.push(`/edit/${props.data.id}`)}>Edit</button>
+        <img className="product_img" src={product_img}></img>
+        <div className="product_detail_box">
+          <p>
+            {name}
+          </p>
+          <p>
+            ${price}
+          </p>
+          <div className="button-container">
+            <button onClick={() => props.deleteProduct(id)}>Delete</button>
+            <button onClick={() => props.history.push(`/edit/${props.data.id}`)}>Edit</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 

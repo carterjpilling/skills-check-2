@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import '../styling/Form.css'
+import logo from '../Images/devmountain.png'
 
 class Form extends Component {
   constructor() {
@@ -113,19 +114,27 @@ class Form extends Component {
   render() {
     // console.log(this.state.edit)
     return (
-      <div className="form-container">
+      <div className="form-display">
+        <div className="form-container">
+          {this.state.product_img
+            ? <img src={this.state.product_img}></img>
+            : <div className="default-logo"></div>}
 
-        <input type="text" onChange={this.handleChange} name="name" value={this.state.name}></input>
-        <input type="text" placeholder="Price" onChange={this.handleChange} name="price" value={this.state.price}></input>
-        <input type="text" placeholder="Image URL" onChange={this.handleChange} name="product_img" value={this.state.product_img}></input>
-        <div>
-          <button onClick={_ => this.handleCancel()}>Cancel</button>
-          {this.state.edit
-            ? <button onClick={() => this.handleEditProduct()}>Save Changes</button>
-            : <button onClick={() => this.handleSubmit()}>Add to Inventory</button>
-          }
+          <div className="input-container">
+            <p>Product Name:</p>
+            <input type="text" onChange={this.handleChange} name="name" value={this.state.name}></input>
+            <p>Product Price:</p>
+            <input type="text" placeholder="Price" onChange={this.handleChange} name="price" value={this.state.price}></input>
+            <p>Product Image</p>
+            <input type="text" placeholder="Image URL" onChange={this.handleChange} name="product_img" value={this.state.product_img}></input>
+          </div>
+          <div className="form-button-container">
+            <button onClick={_ => this.handleCancel()}>Cancel</button>
+            {this.state.edit
+              ? <button onClick={() => this.handleEditProduct()}>Save Changes</button>
+              : <button onClick={() => this.handleSubmit()}>Add to Inventory</button>}
+          </div>
         </div>
-
       </div>
     )
   }
