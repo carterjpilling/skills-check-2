@@ -24,8 +24,15 @@ class Form extends Component {
       // console.log('If Hit')
       axios.get(`/api/product/${id}`)
         .then(res => {
-          // console.log('Get Hit')
-          this.setState({ ...res.data, edit: true })
+          // console.log(res.data)
+          this.setState({
+            name: res.data[0].name,
+            price: res.data[0].price,
+            product_img: res.data[0].product_img,
+            edit: true
+          })
+          // console.log(this.state)
+          // console.log(res.data)
         })
     }
   }
@@ -40,6 +47,7 @@ class Form extends Component {
         product_img: ''
       })
     }
+    // console.log(this.state)
   }
 
 
@@ -63,6 +71,8 @@ class Form extends Component {
     axios.post('/api/product', product)
       // console.log('check2')
       .then(() => {
+        console.log(name, price, product_img)
+        console.log(this.state)
         // console.log('hit .then')
         this.props.history.push('/')
       })
@@ -82,18 +92,20 @@ class Form extends Component {
   }
 
   handleEditProduct() {
+    console.log(this.props.match)
     let { id, name, price, product_img } = this.state
     let product = {
+      id,
       name,
       price,
       product_img
     }
-    axios.put(`/api/product/${id}`, product)
+    axios.put(`/api/product/${this.props.match.params.id}`, product)
       .then(res => {
+        console.log(name, price, product_img)
+        console.log(this.state)
         // console.log('got inventory')
         this.props.history.push('/')
-        // this.props.getInventory()
-        // this.handleCancel()
       })
       .catch(err => console.log(err))
   }
@@ -103,7 +115,7 @@ class Form extends Component {
     return (
       <div className="form-container">
 
-        <input type="text" placeholder="Name" onChange={this.handleChange} name="name" value={this.state.name}></input>
+        <input type="text" onChange={this.handleChange} name="name" value={this.state.name}></input>
         <input type="text" placeholder="Price" onChange={this.handleChange} name="price" value={this.state.price}></input>
         <input type="text" placeholder="Image URL" onChange={this.handleChange} name="product_img" value={this.state.product_img}></input>
         <div>

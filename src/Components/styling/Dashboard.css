@@ -1,12 +1,11 @@
 .dashboard{
-  position: absolute;
-  top:20vh;
-  left: 10%;
+  width: 100%;
+  display: flexbox;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  -ms-flex-align: center;
   align-items: center;
-  align-content: column;
-  border: 2px solid black;
-  width: 400px;
+  position: relative;
+  top: 110px;
+  margin-top: 20px;
 }

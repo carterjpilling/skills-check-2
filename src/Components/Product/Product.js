@@ -8,7 +8,7 @@ function Product(props) {
   return (
     <div className="product-display">
       <div className="product-container">
-        <div>{product_img}</div>
+        <div className="product-img" style={{ backgroundImage: `url(${product_img})` }}></div>
         <p>
           {name}
         </p>
